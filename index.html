@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .container h1 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #d4af37;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #b8902e;
+        }
+        #loading {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const fullname = document.querySelector('#fullname').value;
+            const days = document.querySelector('#days').value;
+            const time = document.querySelector('#time').value;
+            const lessonType = document.querySelector('#lessonType').value;
+            const phone = document.querySelector('#phone').value;
+            
+            if (!fullname || !days || !time || !lessonType || !phone) {
+                alert("Iltimos, barcha maydonlarni to'ldiring!");
+                return;
+            }
+            
+            // Form ma'lumotlarini konsolga chiqarish
+            console.log(`Ism-Familiya: ${fullname}`);
+            console.log(`Dars kunlari: ${days}`);
+            console.log(`Dars vaqti: ${time}`);
+            console.log(`Dars turi: ${lessonType}`);
+            console.log(`Telefon raqami: ${phone}`);
+            
+            setTimeout(() => {
+                if (lessonType === "CSS") {
+                    window.location.href = 'questions.html'; // CSS imtihoni sahifasiga o'tish
+                } else if (lessonType === "JS") {
+                    window.location.href = 'js_exam.html'; // JS imtihoni sahifasiga o'tish
+                }
+            }, 1000); // 1 sekund kutishdan so'ng sahifaga o'tish
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Algoritm edu exam app</h1>
+        <h2>Ro'yxatdan o'tish</h2>
+        <form onsubmit="submitForm(event)">
+            <label for="fullname">Ism familiya:</label>
+            <input type="text" id="fullname" placeholder="F.I.O" required>
+
+            <label for="days">Dars kunlaringiz:</label>
+            <select id="days" required>
+                <option value="">Dars kunlari tanlang</option>
+                <option value="dushanba-chorshanba">Dushanba - Chorshanba</option>
+                <option value="seshanba-payshanba">Seshanba - Payshanba</option>
+                <option value="sharshamba-juma">Chorshanba - Juma</option>
+            </select>
+
+            <label for="time">Dars vaqtini tanlang:</label>
+            <select id="time" required>
+                <option value="">Dars vaqtini tanlang</option>
+                <option value="08:00 - 10:00">08:00 - 10:00</option>
+                <option value="10:00 - 12:00">10:00 - 12:00</option>
+                <option value="12:00 - 14:00">12:00 - 14:00</option>
+                <option value="14:00 - 16:00">14:00 - 16:00</option>
+                <option value="16:00 - 18:00">16:00 - 18:00</option>
+                <option value="18:00 - 20:00">18:00 - 20:00</option>
+            </select>
+
+            <label for="lessonType">Dars turi:</label>
+            <select id="lessonType" required>
+                <option value="">Dars turini tanlang</option>
+                <option value="CSS">CSS Imtihon</option>
+                <option value="JS">JavaScript Imtihon</option>
+            </select>
+
+            <label for="phone">Ota yoki onangizning telefon raqamlari:</label>
+            <input type="tel" id="phone" value="+998">
+            <button type="submit">Jo'natish</button>
+        </form>
+    </div>
+    <div id="loading">Loading...</div>
+</body>
+</html>
